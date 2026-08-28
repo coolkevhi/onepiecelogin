@@ -1,4 +1,5 @@
 import os
+from src.ui.menus.LoginMenu import LoginMenu
 
 class MainMenu:
     #Welcome message only for when program starts for first time
@@ -17,7 +18,7 @@ class MainMenu:
         choice = input("")
         if choice == "1":
             os.system("cls")
-            print("WIP")
+            LoginMenu.loginMenu()
         elif choice == "2":
             print("Thanks for using the program!")
             SystemExit()
