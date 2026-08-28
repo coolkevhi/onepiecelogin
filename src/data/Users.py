@@ -1,5 +1,7 @@
-{
-  "strawhats": {
+
+class Users:
+
+  strawhats: {
     "luffy": {
       "login": "pirateking"
     },
@@ -31,4 +33,6 @@
       "login": "coexistence"
     }
   }
-}
+
+def getUsers():
+  return Users.strawhats

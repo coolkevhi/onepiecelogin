@@ -7,7 +7,7 @@ class MainMenu:
         print("Welcome to the Straw Hat Pirates Database!")
 
     #Main Menu method for the main menu of the program
-    def mainMenu(error): #error is true when the user puts a wrong option
+    def mainMenu(error=False): #error is true when the user puts a wrong option
         print()
         print("=======STRAW HAT PIRATES DATABASE=======")
         print()
@@ -16,6 +16,7 @@ class MainMenu:
         if error: print("\033[3m" + "Please put an available option" + "\033[3m")
         choice = input("")
         if choice == "1":
+            os.system("cls")
             print("WIP")
         elif choice == "2":
             print("Thanks for using the program!")
