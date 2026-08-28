@@ -16,7 +16,7 @@ class MainMenu:
         if error: print("\033[3m" + "Please put an available option" + "\033[3m")
         choice = input("")
         if choice == "1":
-            print("")
+            print("WIP")
         elif choice == "2":
             print("Thanks for using the program!")
             SystemExit()
