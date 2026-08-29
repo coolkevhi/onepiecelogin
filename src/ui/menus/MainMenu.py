@@ -21,7 +21,7 @@ class MainMenu:
             LoginMenu.loginMenu()
         elif choice == "2":
             print("Thanks for using the program!")
-            SystemExit()
+            SystemExit(0)
         else:
             os.system("cls")
             MainMenu.mainMenu(True)

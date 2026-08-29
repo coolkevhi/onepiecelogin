@@ -1,74 +1,104 @@
 import os
 from src.data.Users import Users
-import MainMenu
+from src.ui.LoggedInScreen import LoggedInScreen
+
 
 class LoginMenu:
 
     #gets user data
-    global strawhats
     strawhats = Users.getUsers()
-    global onPassword = False
-    global username
-    global invalid = False
+    onPassword = False
+    username = ""
+    invalid = False
+    choice = ""
 
     #
+    @staticmethod
     def loginMenu(error=False):
+        from src.ui.menus.MainMenu import MainMenu
         print()
         print("=======Login Menu=======")
         print()
-        if onPassword = False:
-            if error = True:
+        if not LoginMenu.onPassword:
+            if error:
                 print("\033[3m" + "Invalid Username" + "\033[3m")
-                if invalid: print("\033[3m" + "Please put an available option" + "\033[3m")
+                if LoginMenu.invalid: print("\033[3m" + "Please put an available option" + "\033[3m")
                 print("[1] Try Again")
                 print("[2] Return to Main Menu")
-                input = input("")
+                LoginMenu.choice = input("")
+                if (LoginMenu.choice == "1"):
+                    LoginMenu.invalid = False
+                    os.system("cls")
+                    LoginMenu.loginMenu()
+                elif (LoginMenu.choice == "2"):
+                    LoginMenu.invalid = False
+                    LoginMenu.onPassword = False
+                    os.system("cls")
+                    MainMenu.mainMenu()
+                else:
+                    LoginMenu.invalid = True
+                    LoginMenu.reRunLoginMenu()
             else:
-                input = input("Please enter your USERNAME: ")
-            if(input == "1"):
-                invalid = False
-                LoginMenu.loginMenu()
-            if(input == "2"):
-                invalid = False
-                MainMenu.mainMenu()
-            else:
-                os.system("cls")
-                invalid = True
-                LoginMenu.loginMenu(True)
+                LoginMenu.choice = input("Please enter your USERNAME: ")
         else:
             pass
-        if onPassword = True:
-            print("Please enter your USERNAME: " + username)
-        elif LoginMenu.checkUsername(input):
-            username = input
-            onPassword = True
+        if LoginMenu.onPassword and not error:
+            print("Please enter your USERNAME: " + LoginMenu.username)
+        elif LoginMenu.checkUsername(LoginMenu.choice):
+            LoginMenu.username = LoginMenu.choice
+            LoginMenu.onPassword = True
+        elif not LoginMenu.onPassword:
+            LoginMenu.reRunLoginMenu()
+        if not error: LoginMenu.choice = input("Please enter your PASSWORD: ")
+        if error:
+            print("\033[3m" + "Invalid Password" + "\033[3m")
+            if LoginMenu.invalid: print("\033[3m" + "Please put an available option" + "\033[3m")
+            print("[1] Try Again")
+            print("[2] Password Hint")
+            print("[3] Return to Main Menu")
+            LoginMenu.choice = input("")
+            if (LoginMenu.choice == "1"):
+                LoginMenu.invalid = False
+                LoginMenu.loginMenu()
+            elif(LoginMenu.choice == "2"):
+                os.system("cls")
+                LoginMenu.invalid = False
+                print()
+                print("Password Hint: Dream(1-3 words together)")
+                print()
+                print("press enter to continue")
+                LoginMenu.choice = input()
+                LoginMenu.reRunLoginMenu()
+            elif (LoginMenu.choice == "3"):
+                LoginMenu.invalid = False
+                LoginMenu.onPassword = False
+                os.system("cls")
+                MainMenu.mainMenu()
+            else:
+                LoginMenu.invalid = True
+                LoginMenu.reRunLoginMenu()
+        elif LoginMenu.checkPassword(LoginMenu.choice):
+            #logged in
+            LoginMenu.onPassword = False
+            os.system("cls")
+            LoggedInScreen.printAsciiArt(LoginMenu.username)
+            print()
+            print("press enter to go back to Main Menu")
+            LoginMenu.choice = input()
+            os.system("cls")
+            MainMenu.mainMenu()
         else:
             LoginMenu.reRunLoginMenu()
-        input = input("Please enter your PASSWORD: ")
-        if LoginMenu.checkPassword(input):
-            #logged in
-        else
-
-        if error: print("\033[3m" + "Please put an available option" + "\033[3m")
-        if choice == "1":
-            os.system("cls")
-            print("WIP")
-        elif choice == "2":
-            print("Thanks for using the program!")
-            SystemExit()
-        else:
-            os.system("cls")
-            LoginMenu.loginMenu(True)
 
     #
     def checkUsername(username):
-        if username in strawhats:
+        if username in LoginMenu.strawhats:
             return True
         else:
             return False
 
     def checkPassword(password):
-        if password == strawhats[username]["login"]:
+        if password == LoginMenu.strawhats[LoginMenu.username]["login"]:
             return True
         else:
             return False

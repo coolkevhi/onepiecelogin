@@ -1,7 +1,7 @@
 
 class Users:
 
-  strawhats: {
+  strawhats = {
     "luffy": {
       "login": "pirateking"
     },
@@ -34,5 +34,6 @@ class Users:
     }
   }
 
-def getUsers():
-  return Users.strawhats
+  @staticmethod
+  def getUsers():
+    return Users.strawhats
