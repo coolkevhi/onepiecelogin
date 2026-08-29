@@ -58,6 +58,7 @@ class LoginMenu:
             print("[3] Return to Main Menu")
             LoginMenu.choice = input("")
             if (LoginMenu.choice == "1"):
+                os.system("cls")
                 LoginMenu.invalid = False
                 LoginMenu.loginMenu()
             elif(LoginMenu.choice == "2"):
