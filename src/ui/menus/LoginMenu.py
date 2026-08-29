@@ -7,12 +7,19 @@ class LoginMenu:
 
     #gets user data
     strawhats = Users.getUsers()
+
+    #If user is on the entering password part of the login menu
     onPassword = False
+
+    #stores username
     username = ""
+
+    #If user has put an invalid option on a incorrect username or password section of the login menu
     invalid = False
+
     choice = ""
 
-    #
+    #login menu allowing user to input username and password to login
     @staticmethod
     def loginMenu(error=False):
         from src.ui.menus.MainMenu import MainMenu
@@ -91,19 +98,21 @@ class LoginMenu:
         else:
             LoginMenu.reRunLoginMenu()
 
-    #
+    #checks if username user inputted is valid
     def checkUsername(username):
         if username in LoginMenu.strawhats:
             return True
         else:
             return False
 
+    #checks if password user inputted is valid
     def checkPassword(password):
         if password == LoginMenu.strawhats[LoginMenu.username]["login"]:
             return True
         else:
             return False
 
+    #reruns the login menu with error set to true running the incorrect section for either the password or username
     def reRunLoginMenu():
         os.system("cls")
         LoginMenu.loginMenu(True)
