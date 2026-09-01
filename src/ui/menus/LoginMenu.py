@@ -89,7 +89,7 @@ class LoginMenu:
             #logged in
             LoginMenu.onPassword = False
             os.system("cls")
-            LoggedInScreen.printAsciiArt(LoginMenu.username)
+            LoggedInScreen.printAsciiArt(LoginMenu.username.lower())
             print()
             print("press enter to go back to Main Menu")
             LoginMenu.choice = input()
