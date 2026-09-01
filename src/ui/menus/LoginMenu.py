@@ -100,14 +100,14 @@ class LoginMenu:
 
     #checks if username user inputted is valid
     def checkUsername(username):
-        if username in LoginMenu.strawhats:
+        if username.lower() in LoginMenu.strawhats:
             return True
         else:
             return False
 
     #checks if password user inputted is valid
     def checkPassword(password):
-        if password == LoginMenu.strawhats[LoginMenu.username]["login"]:
+        if password.lower() == LoginMenu.strawhats[LoginMenu.username.lower()]["login"]:
             return True
         else:
             return False
